@@ -152,14 +152,14 @@
                             </div>
                             <div class="col-12">
                                 <div class="form-floating">
-                                    <input type="text" class="form-control" name="message" required id="message">
+                                    <input type="text" class="form-control" name="subject" required id="subject">
                                     <label for="subject">Subject</label>
                                 </div>
                             </div>
                             <div class="col-12">
                                 <div class="form-floating">
-                                    <textarea class="form-control" required placeholder="Leave a message here"
-                                        id="message" style="height: 150px"></textarea>
+                                    <textarea class="form-control" name="message" required placeholder="Leave a message here"
+                                id="message" style="height: 150px"></textarea>
                                     <label for="message">Message</label>
                                 </div>
                             </div>
@@ -243,13 +243,14 @@
     <script src="js/main.js"></script>
 </body>
 <script src="https://unpkg.com/@supabase/supabase-js"></script>
+<script src="https://unpkg.com/@supabase/supabase-js@2"></script>
 
 <script>
 const { createClient } = supabase;
 
 const client = createClient(
-  "https://uucahjejmxkbefturtix.supabase.co",
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InV1Y2FoamVqbXhrYmVmdHVydGl4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzc1OTUwMjUsImV4cCI6MjA5MzE3MTAyNX0.yD_fbo1kOvRlV7EDxCYMypVPKUltzDiyDCY-HUQ9rg0"
+  "https://adixqhtvfuocpejzztpm.supabase.co",
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFkaXhxaHR2ZnVvY3Blanp6dHBtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzc3NTkzNTEsImV4cCI6MjA5MzMzNTM1MX0.A954MJgHyQXnk603R64cx11DpOfKu0HrARM1vmsm6DM"
 );
 
 const form = document.querySelector('#contact-form');
@@ -268,10 +269,10 @@ form.addEventListener('submit', async (event) => {
     }
   });
 
-  if (!submission.email || !submission.message) {
-    alert("Please fill all required fields");
-    return;
-  }
+  if (!submission.name || !submission.email || !submission.subject || !submission.message) {
+  alert("Please fill all required fields");
+  return;
+}
 
   const { error } = await client
     .from('entries')
